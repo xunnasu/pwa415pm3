@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-zh">
+  <head>
+    <meta charset="UTF-8" />
+    <title>我的首个PWA</title>
+    <meta
+      name="viewport"
+      content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"
+    />
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link rel="manifest" href="manifest.json" />
+  </head>
+  <body>
+    <h3>My PWA</h3>
+    <div class="box">
+      <ul class="titl">
+        <li class="active">首页</li>
+        <li>商城</li>
+        <li>生活</li>
+        <li>汽车</li>
+        <li>娱乐</li>
+        <li>推荐</li>
+        <li>帮助</li>
+      </ul>
+      <ul class="show">
+        <li class="active" style="background:rgb(150, 196, 45)">
+          <img src="./images/beach.jpg" />
+        </li>
+        <li style="background:rgb(236, 101, 101)">
+          <img src="./images/shop.jpg" />
+        </li>
+        <li style="background:rgb(200, 8, 238)">
+          <img src="./images/city1.jpg" />
+        </li>
+        <li style="background:rgb(192, 7, 146)">
+          <img src="./images/car1.jpg" />
+        </li>
+        <li style="background:rgb(61, 25, 221)">
+          <img src="./images/city2.jpg" />
+        </li>
+        <li style="background:rgb(12, 198, 245)">
+          <img src="./images/earth.jpg" />
+        </li>
+        <li style="background:rgb(43, 240, 17)">
+          <img src="./images/fetch-dog.jpg" />
+        </li>
+      </ul>
+    </div>
+    <script type="text/javascript">
+      if (navigator.serviceWorker != null) {
+        //判断是否支持serviceWorker
+        //加载相关serviceWorker脚本
+        navigator.serviceWorker.register("sw.js").then(function(registartion) {
+          console.log("support sw", registartion.scope);
+        });
+      }
+      var oTit = document.querySelectorAll(".titl li");
+      var oShow = document.querySelectorAll(".show li");
+      for (var i = 0; i < oTit.length; i++) {
+        oTit[i].index = i;
+        oTit[i].onmouseover = function() {
+          for (var i = 0; i < oTit.length; i++) {
+            oTit[i].className = "";
+            oShow[i].className = "";
+          }
+          this.className = "active";
+          // console.log(this.index)
+          oShow[this.index].className = "active";
+        };
+      }
+    </script>
+  </body>
+</html>
