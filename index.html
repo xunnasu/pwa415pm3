@@ -9,6 +9,25 @@
     />
     <link rel="stylesheet" type="text/css" href="main.css" />
     <link rel="manifest" href="manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="案例" />
+    <link rel="apple-touch-icon" href="images/logo072.png" />
+
+    <meta name="application-name" content="案例" />
+    <meta name="msapplication-TileColor" content="#222" />
+    <meta
+      name="msapplication-square70x70logo"
+      content="images/logo/logo072.png"
+    />
+    <meta
+      name="msapplication-square150x150logo"
+      content="images/logo/logo152.png"
+    />
+    <meta
+      name="msapplication-square310x310logo"
+      content="images/logo/logo0256.png"
+    />
   </head>
   <body>
     <h3>My PWA</h3>
@@ -53,6 +72,10 @@
         navigator.serviceWorker.register("sw.js").then(function(registartion) {
           console.log("support sw", registartion.scope);
         });
+      }
+      if ("standalone" in window.navigator && window.navigator.standalone) {
+        // standalone模式进行特殊处理，例如展示返回按钮
+        backBtn.show();
       }
       var oTit = document.querySelectorAll(".titl li");
       var oShow = document.querySelectorAll(".show li");
